@@ -1,10 +1,11 @@
+/* eslint-disable prefer-template */
 import './style.css';
 
 let scores = [
   {
     name: 'Name: ',
     score: 127,
-  }
+  },
 ];
 
 const setStored = () => localStorage.setItem('savedScore', JSON.stringify(scores));
@@ -12,13 +13,13 @@ const getStored = () => JSON.parse(window.localStorage.getItem('savedScore'));
 
 class AddScore {
   constructor(name, score) {
-    this.name = name+':';
+    this.name = name + ': ';
     this.score = score;
   }
 }
 
 // DOM
-const scoreContainer = document.querySelector('.scores')
+const scoreContainer = document.querySelector('.scores');
 const formContainer = document.querySelector('.form');
 
 // Form
@@ -42,26 +43,6 @@ liTwo.appendChild(inputTwo);
 form.appendChild(button);
 formContainer.appendChild(form);
 
-const pushScore = () => {
-  const newScore = new AddScore(inputOne.value, inputTwo.value);
-  scores.push(newScore);
-  inputOne.value = '';
-  inputTwo.value = '';
-  setStored();
-  displayScore();
-}
-
-btnClass.addEventListener('click', (e) => {
-  e.preventDefault();
-  pushScore();
-})
-
-const displayScore = () => {
-  scores = getStored();
-  clearPrevious();
-  iterateScore();
-}
-
 const iterateScore = () => {
   scores.forEach((item, i) => {
     scores[i].index = i;
@@ -76,13 +57,33 @@ const iterateScore = () => {
     div.appendChild(name);
     div.appendChild(number);
     scoreContainer.appendChild(div);
-  })
-}
+  });
+};
 
 const clearPrevious = () => {
   const oldList = document.querySelectorAll('.container');
   [...oldList].forEach((e) => e.remove());
+};
+
+const displayScore = () => {
+  scores = getStored();
+  clearPrevious();
+  iterateScore();
+};
+
+const pushScore = () => {
+  const newScore = new AddScore(inputOne.value, inputTwo.value);
+  scores.push(newScore);
+  inputOne.value = '';
+  inputTwo.value = '';
+  setStored();
+  displayScore();
 }
+
+btnClass.addEventListener('click', (e) => {
+  e.preventDefault();
+  pushScore();
+});
 
 window.addEventListener('load', () => {
   displayScore();
