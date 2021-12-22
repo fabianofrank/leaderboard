@@ -23,8 +23,6 @@ const scoreContainer = document.querySelector('.scores');
 const formContainer = document.querySelector('.form');
 
 // Form
-const form = document.createElement('form');
-form.method = 'post';
 const ul = document.createElement('ul');
 const liOne = document.createElement('li');
 const inputOne = document.createElement('input');
@@ -35,13 +33,12 @@ button.classList.add('button');
 const btnClass = document.querySelector('.button');
 const submit = document.createTextNode('Submit');
 button.appendChild(submit);
-form.appendChild(ul);
+formContainer.appendChild(ul);
 ul.appendChild(liOne);
 liOne.appendChild(inputOne);
 ul.appendChild(liTwo);
 liTwo.appendChild(inputTwo);
-form.appendChild(button);
-formContainer.appendChild(form);
+formContainer.appendChild(button);
 
 const iterateScore = () => {
   scores.forEach((item, i) => {
@@ -78,7 +75,7 @@ const pushScore = () => {
   inputTwo.value = '';
   setStored();
   displayScore();
-}
+};
 
 btnClass.addEventListener('click', (e) => {
   e.preventDefault();
