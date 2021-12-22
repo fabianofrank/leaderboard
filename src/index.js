@@ -10,7 +10,6 @@ let scores = [
 const setStored = () => localStorage.setItem('savedScore', JSON.stringify(scores));
 const getStored = () => JSON.parse(window.localStorage.getItem('savedScore'));
 
-
 class AddScore {
   constructor(name, score) {
     this.name = name+':';
@@ -32,9 +31,9 @@ const inputTwo = document.createElement('input');
 const liTwo = document.createElement('li');
 const button = document.createElement('button');
 button.classList.add('button');
+const btnClass = document.querySelector('.button');
 const submit = document.createTextNode('Submit');
 button.appendChild(submit);
-// button.type = 'submit';
 form.appendChild(ul);
 ul.appendChild(liOne);
 liOne.appendChild(inputOne);
@@ -52,11 +51,6 @@ const pushScore = () => {
   displayScore();
 }
 
-// const addScore = () => {
-  
-// }
-
-const btnClass = document.querySelector('.button');
 btnClass.addEventListener('click', (e) => {
   e.preventDefault();
   pushScore();
