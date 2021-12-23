@@ -1,7 +1,7 @@
 /* eslint-disable prefer-template */
 import './style.css';
 
-const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/NVMs7bDqCFiWd9Tmg47Y/scores/';
+const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/X9huMz5c5d7SxuSpxECG/scores/';
 
 // GET
 async function fetchScore() {
@@ -20,11 +20,10 @@ async function postScore(objectData) {
     },
     body: JSON.stringify(objectData),
   });
-  return response.json();
+  console.log(response.json());
 }
 
 // RENDER
-const formContainer = document.querySelector('.form');
 const renderScore = () => {
   fetchScore()
     .then((serverData) => {
@@ -45,15 +44,22 @@ const getScore = () => {
   const scores = document.querySelector('.scores').value;
   postScore({ user: name, score: scores })
     .then(() => {
-      name.value = '';
-      scores.value = '';
+      document.querySelector('.name').value = '';
+      document.querySelector('.scores').value = '';
       renderScore();
     });
 };
 
-formContainer.addEventListener('submit', (e) => {
-  getScore();
+const submitButton = document.querySelector('#submit');
+submitButton.addEventListener('click', (e) => {
   e.preventDefault();
+  getScore();
+});
+
+const refreshButton = document.querySelector('#refresh');
+refreshButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  renderScore();
 });
 
 renderScore();
