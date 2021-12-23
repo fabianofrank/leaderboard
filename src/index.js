@@ -30,7 +30,7 @@ const renderScore = () => {
     .then((serverData) => {
       let html = '';
       serverData.result.forEach((data) => {
-        let htmlSegment = `<p>${data.user}: ${data.score}</p>`;
+        const htmlSegment = `<p>${data.user}: ${data.score}</p>`;
         html += htmlSegment;
       });
 
@@ -51,9 +51,9 @@ const getScore = () => {
     });
 };
 
- formContainer.addEventListener('submit', (e) => {
-   getScore()
-   e.preventDefault();
+formContainer.addEventListener('submit', (e) => {
+  getScore();
+  e.preventDefault();
 });
 
 renderScore();
