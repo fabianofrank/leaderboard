@@ -39,10 +39,10 @@ const renderScore = () => {
     });
 };
 
+// SUBMIT
 const getScore = () => {
   const name = document.querySelector('.name').value;
   const scores = document.querySelector('.scores').value;
-
   postScore({ user: name, score: scores })
     .then(() => {
       name.value = '';
