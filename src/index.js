@@ -30,7 +30,6 @@ const inputTwo = document.createElement('input');
 const liTwo = document.createElement('li');
 const button = document.createElement('button');
 button.classList.add('button');
-const btnClass = document.querySelector('.button');
 const submit = document.createTextNode('Submit');
 button.appendChild(submit);
 formContainer.appendChild(ul);
@@ -77,6 +76,7 @@ const pushScore = () => {
   displayScore();
 };
 
+const btnClass = document.querySelector('.button');
 btnClass.addEventListener('click', (e) => {
   e.preventDefault();
   pushScore();
