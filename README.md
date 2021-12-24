@@ -5,7 +5,7 @@
 A JavaScript project for the Leaderboard API implementation, using Webpack and ES6 features
 
 ## Demo
-Get the live link [here](https://fabianofrank.github.io/todo-app/)
+Get the live link [here](https://fabianofrank.github.io/leaderboard/)
 
 ## Built With
 
@@ -14,11 +14,6 @@ Get the live link [here](https://fabianofrank.github.io/todo-app/)
 - GIT
 - Webpack
 - API
-
-## Getting Started
-To get a local copy up and running follow these [steps](https://docs.github.com/en/repositories/creating-and-managing to-repositories/cloning-a-repository)
-
-To run the [Webpack](https://webpack.js.org/guides/getting-started/) build first you need to have [Node.js](https://nodejs.org/en/download/package-manager/) installed
 
 ### Prerequisites
 Git
