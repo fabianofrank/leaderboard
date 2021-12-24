@@ -10,8 +10,7 @@ async function fetchScore() {
 }
 
 // POST
-// My game ID NVMs7bDqCFiWd9Tmg47Y: console.log(response.json())
-// First we create the ID for the object { name: 'Franks Game'}
+// My game ID NVMs7bDqCFiWd9Tmg47Y
 async function postScore(objectData) {
   const response = await fetch(baseURL, {
     method: 'POST',
@@ -20,7 +19,7 @@ async function postScore(objectData) {
     },
     body: JSON.stringify(objectData),
   });
-  console.log(response.json());
+  return response.json();
 }
 
 // RENDER
