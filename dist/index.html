@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leader Board</title>
-<script defer src="main.js"></script></head>
+<script defer src="/leaderboard/main.js"></script></head>
 <body>
   <header>
     <h1>Leaderboard</h1>
@@ -15,7 +15,7 @@
     <section class="recent-scores">
       <header>
         <h2>Recent scores</h2>
-        <button type="reset">Refresh</button>
+        <button id="refresh" type="reset">Refresh</button>
       </header>
       <div class="container"></div>
     </section>
@@ -27,7 +27,7 @@
       <form class="form">
         <input type="text" class="name">
         <input type="number" class="scores">
-        <button class="button" id="submit" type="submit">Submit</button>
+        <button id="submit" type="submit">Submit</button>
       </form>
     </section>
   </main>
