@@ -1,87 +1,64 @@
 /* eslint-disable prefer-template */
 import './style.css';
 
-let scores = [
-  {
-    name: 'Name: ',
-    score: 127,
-  },
-];
+const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/X9huMz5c5d7SxuSpxECG/scores/';
 
-const setStored = () => localStorage.setItem('savedScore', JSON.stringify(scores));
-const getStored = () => JSON.parse(window.localStorage.getItem('savedScore'));
-
-class AddScore {
-  constructor(name, score) {
-    this.name = name + ': ';
-    this.score = score;
-  }
+// GET
+async function fetchScore() {
+  const response = await fetch(baseURL);
+  return response.json();
 }
 
-// DOM
-const scoreContainer = document.querySelector('.scores');
-const formContainer = document.querySelector('.form');
-
-// Form
-const ul = document.createElement('ul');
-const liOne = document.createElement('li');
-const inputOne = document.createElement('input');
-const inputTwo = document.createElement('input');
-const liTwo = document.createElement('li');
-const button = document.createElement('button');
-button.classList.add('button');
-const btnClass = document.querySelector('.button');
-const submit = document.createTextNode('Submit');
-button.appendChild(submit);
-formContainer.appendChild(ul);
-ul.appendChild(liOne);
-liOne.appendChild(inputOne);
-ul.appendChild(liTwo);
-liTwo.appendChild(inputTwo);
-formContainer.appendChild(button);
-
-const iterateScore = () => {
-  scores.forEach((item, i) => {
-    scores[i].index = i;
-    const div = document.createElement('div');
-    div.classList.add('container');
-    const name = document.createElement('p');
-    const getName = document.createTextNode(item.name);
-    name.appendChild(getName);
-    const number = document.createElement('p');
-    const getScore = document.createTextNode(item.score);
-    number.appendChild(getScore);
-    div.appendChild(name);
-    div.appendChild(number);
-    scoreContainer.appendChild(div);
+// POST
+// My game ID NVMs7bDqCFiWd9Tmg47Y
+async function postScore(objectData) {
+  const response = await fetch(baseURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(objectData),
   });
+  return response.json();
+}
+
+// RENDER
+const renderScore = () => {
+  fetchScore()
+    .then((serverData) => {
+      let html = '';
+      serverData.result.forEach((data) => {
+        const htmlSegment = `<p>${data.user}: ${data.score}</p>`;
+        html += htmlSegment;
+      });
+
+      const container = document.querySelector('.container');
+      container.innerHTML = html;
+    });
 };
 
-const clearPrevious = () => {
-  const oldList = document.querySelectorAll('.container');
-  [...oldList].forEach((e) => e.remove());
+// SUBMIT
+const getScore = () => {
+  const name = document.querySelector('.name').value;
+  const scores = document.querySelector('.scores').value;
+  postScore({ user: name, score: scores })
+    .then(() => {
+      document.querySelector('.name').value = '';
+      document.querySelector('.scores').value = '';
+      renderScore();
+    });
 };
 
-const displayScore = () => {
-  scores = getStored();
-  clearPrevious();
-  iterateScore();
-};
-
-const pushScore = () => {
-  const newScore = new AddScore(inputOne.value, inputTwo.value);
-  scores.push(newScore);
-  inputOne.value = '';
-  inputTwo.value = '';
-  setStored();
-  displayScore();
-};
-
-btnClass.addEventListener('click', (e) => {
+const submitButton = document.querySelector('#submit');
+submitButton.addEventListener('click', (e) => {
   e.preventDefault();
-  pushScore();
+  getScore();
 });
 
-window.addEventListener('load', () => {
-  displayScore();
+const refreshButton = document.querySelector('#refresh');
+refreshButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  renderScore();
 });
+
+renderScore();
