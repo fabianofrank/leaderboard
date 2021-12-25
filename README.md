@@ -4,6 +4,8 @@
 
 A JavaScript project for the Leaderboard API implementation, using Webpack and ES6 features
 
+![screenshot](./leaderboard.png)
+
 ## Demo
 Get the live link [here](https://fabianofrank.github.io/leaderboard/)
 
